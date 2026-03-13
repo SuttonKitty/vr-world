@@ -1,11 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="utf-8" />
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
+  <title>Cutie Hell</title>
 </head>
+
 <body>
+  <a-scene>
+
+    <a-assets>
+      <a-asset-item id="hell" src="hell.glb"></a-asset-item>
+      <a-asset-item id="myModel" src="avatar.glb"></a-asset-item>
+       <!-- <a-asset-item id="myModel" src="pose.glb"></a-asset-item> -->
+      <a-asset-item id="cat" src="kitty.gltf"></a-asset-item>
+      <img id="groundTexture" src="hell_fire.png">
+      <!-- <audio id="stoneSound" src="stone.mp3"></audio> -->
+    </a-assets>
+
+    <a-entity 
+      id="hell"
+      gltf-model="#hell"
+      position="-2 3.5 -5"
+      rotation="0 0 0"
+      scale="0.1 0.1 0.1">
+    </a-entity>
+
+    <a-entity 
+      id="mymodel"
+      gltf-model="#myModel"
+      position="-2 1.7 10.5"
+      rotation="0 180 0"
+      scale="0.08 0.08 0.08">
+    </a-entity>
     
+    <a-entity 
+      id="cat"
+      gltf-model="#cat"
+      position="-2 1 -5"
+      rotation="0 0 0"
+      scale="0.3 0.3 0.3">
+    </a-entity>
+
+    <a-plane
+      src="#groundTexture"
+      rotation="-90 0 0"
+      width="100"
+      height="100">
+    </a-plane>
+
+    <a-sky color="red"></a-sky>
+
+  </a-scene>
+
+  <script>
+    const model = document.querySelector('#mymodel');
+    const sound = document.querySelector('#stoneSound');
+
+    model.addEventListener('click', () => {
+      if (sound) sound.play();
+    });
+  </script>
+
 </body>
 </html>
