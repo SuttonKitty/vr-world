@@ -1,56 +1,75 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
   <title>Cutie Hell</title>
+  <script src="https://aframe.io/releases/1.7.1/aframe.min.js"></script>
 </head>
 
 <body>
-  <a-scene>
 
-    <a-assets>
-      <a-asset-item id="hell" src="hell.glb"></a-asset-item>
-      <a-asset-item id="myModel" src="avatar.glb"></a-asset-item>
-       <!-- <a-asset-item id="myModel" src="pose.glb"></a-asset-item> -->
-      <img id="groundTexture" src="hell_fire.png">
-    </a-assets>
+<a-scene>
 
-    <a-entity 
-      id="hell"
-      gltf-model="#hell"
-      position="-2 3.5 -5"
-      rotation="0 0 0"
-      scale="0.1 0.1 0.1">
-    </a-entity>
+  <!-- Assets -->
 
-    <a-entity 
-      id="mymodel"
-      gltf-model="#myModel"
-      position="-2 1.7 10.5"
-      rotation="0 180 0"
-      scale="0.08 0.08 0.08">
-    </a-entity>
+  <a-assets>
+    <a-asset-item id="hellModel" src="hell.glb"></a-asset-item>
+    <a-asset-item id="avatarModel" src="avatar.glb"></a-asset-item>
+    <a-asset-item id="catModel" src="cat.glb"></a-asset-item>
+    <img id="groundTexture" src="hell_fire.png">
+  </a-assets>
 
-    <a-plane
-      src="#groundTexture"
-      rotation="-90 0 0"
-      width="100"
-      height="100">
-    </a-plane>
+  <!-- Camera -->
 
-    <a-sky color="red"></a-sky>
+<a-entity camera position="0 1.6 0" look-controls></a-entity>
 
-  </a-scene>
+  <!-- Hell Environment -->
 
-  <script>
-    const model = document.querySelector('#mymodel');
-    const sound = document.querySelector('#stoneSound');
+<a-entity
+ gltf-model="#hellModel"
+ position="-2 3.5 -5"
+ rotation="0 0 0"
+ scale="0.1 0.1 0.1"> </a-entity>
 
-    model.addEventListener('click', () => {
-      if (sound) sound.play();
-    });
-  </script>
+  <!-- Avatar -->
+
+<a-entity
+ id="mymodel"
+ gltf-model="#avatarModel"
+ position="-2 1.6 -3"
+ rotation="0 180 0"
+ scale="0.08 0.08 0.08"> </a-entity>
+
+  <!-- Cat -->
+
+<a-entity
+ gltf-model="#catModel"
+ position="-2 1 -5"
+ rotation="0 0 0"
+ scale="0.3 0.3 0.3"> </a-entity>
+
+  <!-- Ground -->
+
+<a-plane
+ src="#groundTexture"
+ rotation="-90 0 0"
+ width="100"
+ height="100"> </a-plane>
+
+  <!-- Sky -->
+
+<a-sky color="red"></a-sky>
+
+</a-scene>
+
+<script>
+  const model = document.querySelector('#mymodel');
+
+  model.addEventListener('click', () => {
+    console.log("Avatar clicked!");
+  });
+</script>
 
 </body>
 </html>
